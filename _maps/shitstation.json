@@ -1,0 +1,11 @@
+{
+    "map_name": "ShitStation",
+    "map_path": "map_files/ShitStation",
+    "map_file": "ShitStation.dmm",
+    "shuttles": {
+	    "cargo": "cargo_box",
+	    "ferry": "ferry_fancy",
+	    "whiteship": "whiteship_donut",
+	    "emergency": "emergency_donut"
+    }
+}
