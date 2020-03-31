@@ -15,3 +15,7 @@
 /datum/map_template/shuttle/labour/lima
     suffix = "lima"
     name = "labour shuttle (Lima)"
+
+/datum/map_template/shuttle/arrival/shit
+	suffix = "shit"
+	name = "arrival shuttle (Shit)"
