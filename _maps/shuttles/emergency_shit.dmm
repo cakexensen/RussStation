@@ -8,15 +8,15 @@
 "p" = (/obj/machinery/door/airlock/titanium{name = "Emergency Shuttle Airlock"},/turf/open/floor/plating,/area/shuttle/escape)
 "q" = (/turf/closed/wall/mineral/plastitanium,/area/shuttle/escape)
 "r" = (/obj/structure/chair/comfy/shuttle{dir = 8},/obj/machinery/light{dir = 1},/obj/item/radio/intercom{dir = 4; name = "Station Intercom (General)"; pixel_y = 27},/turf/open/floor/mineral/titanium/white,/area/shuttle/escape)
-"s" = (/obj/structure/closet/emcloset,/turf/open/floor/mineral/plastitanium/red/brig,/area/shuttle/escape)
-"t" = (/obj/effect/turf_decal/stripes/line{dir = 4},/obj/structure/closet/emcloset,/turf/open/floor/mineral/plastitanium/red/brig,/area/shuttle/escape)
+"s" = (/obj/structure/closet/emcloset/anchored,/turf/open/floor/mineral/plastitanium/red/brig,/area/shuttle/escape)
+"t" = (/obj/effect/turf_decal/stripes/line{dir = 4},/obj/structure/closet/emcloset/anchored,/turf/open/floor/mineral/plastitanium/red/brig,/area/shuttle/escape)
 "u" = (/obj/machinery/door/airlock/security/glass{name = "Brig"; req_access_txt = "2"},/turf/open/floor/plating,/area/shuttle/escape)
 "v" = (/obj/structure/chair/comfy/shuttle,/turf/open/floor/mineral/plastitanium/red/brig,/area/shuttle/escape)
 "y" = (/obj/machinery/computer/emergency_shuttle{dir = 4},/turf/open/floor/mineral/titanium/white,/area/shuttle/escape)
 "z" = (/obj/structure/chair/comfy/shuttle{dir = 8},/obj/machinery/status_display/evac{pixel_x = 32},/turf/open/floor/mineral/plastitanium/red/brig,/area/shuttle/escape)
 "A" = (/obj/machinery/light{dir = 1},/turf/open/floor/mineral/plastitanium/red/brig,/area/shuttle/escape)
 "B" = (/obj/structure/chair/comfy/shuttle{dir = 1},/turf/open/floor/mineral/plastitanium/red/brig,/area/shuttle/escape)
-"D" = (/obj/machinery/door/airlock/titanium{name = "Emergency Shuttle Airlock"},/obj/docking_port/mobile/emergency{dir = 2; dwidth = 10; name = "Shitcurity Emergency Shuttle"},/turf/open/floor/plating,/area/shuttle/escape)
+"D" = (/obj/machinery/door/airlock/titanium{name = "Emergency Shuttle Airlock"},/obj/docking_port/mobile/emergency{dir = 2; dwidth = 10; name = "Shitcurity Emergency Shuttle"; preferred_direction = 4},/turf/open/floor/plating,/area/shuttle/escape)
 "E" = (/obj/machinery/computer/station_alert{dir = 4},/turf/open/floor/mineral/titanium/white,/area/shuttle/escape)
 "F" = (/turf/closed/wall/mineral/titanium,/area/shuttle/escape)
 "G" = (/obj/machinery/computer/communications{dir = 4},/turf/open/floor/mineral/titanium/white,/area/shuttle/escape)
@@ -35,11 +35,11 @@
 aFFpbpFFFFFDbpFFFFFFaa
 aFMMMMAMoMAMMMAMoMAFFa
 FFeSBMMBBBMMMMMBBBMhUR
-FFFFFMMFFFMMsMMFFFMhUR
+FFFFFMMFbFMMsMMFbFMhUR
 bGrbMMMvXcMOFKMvXcMhUR
-byNuMMMMMMMzFKMMMMMtqa
+byNuMMMMMMMzbKMMMMMtqa
 bEPbMMMeSBMOFKMeSBMhUR
-FFFFFMMFFFMMsMMFFFMhUR
+FFFFFMMFbFMMsMMFbFMhUR
 FFcXvMMvvvMMMMMvvvMhUR
 aFMMMMZMnMZMMMZMnMZFFa
 aFFbbbFFFFFbbbFFFFFFaa
