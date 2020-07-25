@@ -23,7 +23,7 @@
 		world.log << "Selecting among [spawners.len] dock spawners"
 		var/obj/effect/spawner/docking_port/winner = pick(spawners)
 		winner.selected = TRUE
-		world.log << "Randomly selected docking port [winner]"
+		world.log << "Randomly selected docking port [winner] at [winner.loc.x],[winner.loc.y]"
 		// cease this picking from happening again
 		spawners = list()
 	if(selected)
@@ -35,5 +35,4 @@
 		dock.dwidth = dwidth
 		dock.dheight = dheight
 		dock.dir = dir
-		//dock.Initialize(mapload)
 	qdel(src)
