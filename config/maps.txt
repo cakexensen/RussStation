@@ -47,7 +47,6 @@ map limastation
 endmap
 
 map shitstation
-	votable
 endmap
 
 map runtimestation
