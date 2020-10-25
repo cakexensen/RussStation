@@ -3,7 +3,7 @@
     "map_path": "map_files/CubeStation",
     "map_file": "Cube.dmm",
     "shuttles": {
-        "cargo": "cargo_box",
+        "cargo": "cargo_lima",
         "ferry": "ferry_fancy",
         "whiteship": "whiteship_box",
         "emergency": "emergency_box"
