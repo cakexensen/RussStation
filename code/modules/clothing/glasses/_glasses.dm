@@ -198,6 +198,7 @@
 	tint = 1
 	glass_colour_type = /datum/client_colour/glass_colour/gray
 	dog_fashion = /datum/dog_fashion/head
+	flags_1 = SUPERMATTER_IGNORES_1 // honk - sunglasses survive dusting
 
 /obj/item/clothing/glasses/sunglasses/reagent
 	name = "beer goggles"

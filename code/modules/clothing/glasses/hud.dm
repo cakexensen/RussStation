@@ -67,6 +67,7 @@
 	flash_protect = FLASH_PROTECTION_FLASH
 	tint = 1
 	glass_colour_type = /datum/client_colour/glass_colour/blue
+	flags_1 = SUPERMATTER_IGNORES_1 // honk - sunglasses survive dusting
 
 /obj/item/clothing/glasses/hud/diagnostic
 	name = "diagnostic HUD"
@@ -93,6 +94,7 @@
 	inhand_icon_state = "glasses"
 	flash_protect = FLASH_PROTECTION_FLASH
 	tint = 1
+	flags_1 = SUPERMATTER_IGNORES_1 // honk - sunglasses survive dusting
 
 /obj/item/clothing/glasses/hud/security
 	name = "security HUD"
@@ -139,6 +141,7 @@
 	flash_protect = FLASH_PROTECTION_FLASH
 	tint = 1
 	glass_colour_type = /datum/client_colour/glass_colour/darkred
+	flags_1 = SUPERMATTER_IGNORES_1 // honk - sunglasses survive dusting
 
 /obj/item/clothing/glasses/hud/security/night
 	name = "night vision security HUD"
@@ -161,6 +164,7 @@
 	attack_verb_simple = list("slice")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	sharpness = SHARP_EDGED
+	flags_1 = SUPERMATTER_IGNORES_1 // honk - sunglasses survive dusting
 
 /obj/item/clothing/glasses/hud/security/sunglasses/gars/supergars
 	name = "giga HUD gar glasses"
@@ -235,6 +239,7 @@
 	flash_protect = FLASH_PROTECTION_FLASH
 	tint = 1
 	glass_colour_type = /datum/client_colour/glass_colour/gray
+	flags_1 = SUPERMATTER_IGNORES_1 // honk - sunglasses survive dusting
 
 
 /obj/item/clothing/glasses/hud/spacecop/hidden // for the undercover cop
