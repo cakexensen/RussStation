@@ -20,7 +20,7 @@
 #define POLL_IGNORE_SPLITPERSONALITY "split_personality"
 #define POLL_IGNORE_CONTRACTOR_SUPPORT "contractor_support"
 #define POLL_IGNORE_ACADEMY_WIZARD "academy_wizard"
-#define POLL_IGNORE_DWARF "dwarf" //honk
+#define POLL_IGNORE_DWARF "dwarf" // honk
 
 GLOBAL_LIST_INIT(poll_ignore_desc, list(
 	POLL_IGNORE_SENTIENCE_POTION = "Sentience potion",
@@ -41,8 +41,8 @@ GLOBAL_LIST_INIT(poll_ignore_desc, list(
 	POLL_IGNORE_SHADE = "Shade",
 	POLL_IGNORE_IMAGINARYFRIEND = "Imaginary Friend",
 	POLL_IGNORE_SPLITPERSONALITY = "Split Personality",
-	POLL_IGNORE_CONTRACTOR_SUPPORT = "Contractor Support Unit", // honk -- start
-	POLL_IGNORE_DWARF = "Dwarf Dorm Room", // honk -- end
+	POLL_IGNORE_CONTRACTOR_SUPPORT = "Contractor Support Unit",
+	POLL_IGNORE_DWARF = "Dwarf Dorm Room", // honk
 	POLL_IGNORE_CONTRACTOR_SUPPORT = "Contractor Support Unit",
 	POLL_IGNORE_ACADEMY_WIZARD = "Academy Wizard Defender"
 ))
