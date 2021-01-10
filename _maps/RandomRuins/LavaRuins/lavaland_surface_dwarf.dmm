@@ -22,7 +22,7 @@
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/dorf)
 "c" = (
-/obj/structure/sink/puddle,
+/obj/structure/water_source/puddle,
 /turf/open/floor/plating/asteroid{
 	initial_gas_mix = "LAVALAND_ATMOS"
 	},
