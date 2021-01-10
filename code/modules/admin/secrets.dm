@@ -540,7 +540,7 @@
 			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Dwarf Beards"))
 			for(var/i in GLOB.human_list)
 				var/mob/living/carbon/human/B = i
-				B.facial_hairstyle = "Dward Beard"
+				B.facial_hairstyle = pick("Beard (Dwarf)", "Beard (Very Long)", "Beard (Full)") // same choices as dwarves
 				B.update_hair()
 			message_admins("[key_name_admin(usr)] activated dorf mode")
 
