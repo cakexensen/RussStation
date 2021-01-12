@@ -24,13 +24,15 @@
 	var/dwarf_hair = pick("Beard (Dwarf)", "Beard (Very Long)", "Beard (Full)")
 	C.facial_hairstyle = dwarf_hair
 	C.update_hair()
+	// dwarves can see ghosts! and no putting them to rest with slabs, that would be too much
+	C.AddComponent(/datum/component/spookable)
 
 /datum/species/dwarf/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
 	C.dna.remove_mutation(DWARFISM)
 	C.bubble_file = 'icons/mob/talk.dmi'
 	C.bubble_icon = initial(C.bubble_icon)
+	C.RemoveComponent(/datum/component/spookable)
 	. = ..()
-
 
 /datum/species/dwarf/random_name(gender, unique, lastname)
 	return dwarf_name()

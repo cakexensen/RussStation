@@ -3265,6 +3265,7 @@
 #include "russstation\code\datums\shuttles.dm"
 #include "russstation\code\datums\achievements\boss_achievements.dm"
 #include "russstation\code\datums\achievements\boss_scores.dm"
+#include "russstation\code\datums\components\spookable.dm"
 #include "russstation\code\datums\components\crafting\alcohol_gun.dm"
 #include "russstation\code\datums\components\crafting\smeltery.dm"
 #include "russstation\code\datums\keybinding\human.dm"
