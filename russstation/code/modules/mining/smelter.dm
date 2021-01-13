@@ -378,7 +378,8 @@
 		smelted_material = new S.smelted_material.type()
 		name = "[S.material_type] armour"
 		desc = "Armour forged from [S.material_type]."
-		for(var/A in armor)
+		var/list/defenses = armor
+		for(var/A in defenses)
 			A = S.attack_amt/100
 
 //Forged Helmet
@@ -402,5 +403,6 @@
 		smelted_material = new S.smelted_material.type()
 		name = "[S.material_type] helmet."
 		desc = "Helmet forged from [S.material_type]"
-		for(var/A in armor)
+		var/list/defenses = armor
+		for(var/A in defenses)
 			A = S.attack_amt/100
