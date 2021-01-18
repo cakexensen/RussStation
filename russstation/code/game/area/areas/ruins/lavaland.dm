@@ -7,3 +7,4 @@
 	name = "Lavaland Dorf Ruins"
 	icon_state = "red"
 	outdoors = FALSE
+	ambientsounds = DWARF_AMBIENCE
