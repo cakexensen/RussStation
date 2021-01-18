@@ -12,7 +12,7 @@
 
 /obj/item/areaeditor/blueprints/dwarf/attack_self(mob/user)
 	// only dwarves can use them
-	if(is_species(usr, /datum/species/dwarf))
+	if(!is_species(usr, /datum/species/dwarf))
 		to_chat(usr, "You can't seem to make sense of the dwarven property laws.")
 	else
 		return ..()

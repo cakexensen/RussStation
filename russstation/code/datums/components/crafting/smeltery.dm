@@ -7,8 +7,8 @@
 				/obj/item/mold_result/blade = 1)
 	parts = list(/obj/item/mold_result/blade = 1)
 	time = 40
-	category = CAT_SMITH
-
+	category = CAT_DWARF
+	always_available = FALSE
 
 /datum/crafting_recipe/pickaxe
 	name = "Forged Pickaxe"
@@ -17,7 +17,8 @@
 				/obj/item/mold_result/pickaxe_head = 1)
 	parts = list(/obj/item/mold_result/pickaxe_head = 1)
 	time = 40
-	category = CAT_SMITH
+	category = CAT_DWARF
+	always_available = FALSE
 
 /datum/crafting_recipe/shovel
 	name = "Forged Shovel"
@@ -26,7 +27,8 @@
 				/obj/item/mold_result/shovel_head = 1)
 	parts = list(/obj/item/mold_result/shovel_head = 1)
 	time = 40
-	category = CAT_SMITH
+	category = CAT_DWARF
+	always_available = FALSE
 
 /datum/crafting_recipe/knife
 	name = "Forged Knife"
@@ -35,7 +37,8 @@
 				/obj/item/mold_result/knife_head = 1)
 	parts = list(/obj/item/mold_result/knife_head = 1)
 	time = 40
-	category = CAT_SMITH
+	category = CAT_DWARF
+	always_available = FALSE
 
 /datum/crafting_recipe/war_hammer
 	name = "Forged War Hammer"
@@ -44,7 +47,8 @@
 				/obj/item/mold_result/war_hammer_head = 1)
 	parts = list(/obj/item/mold_result/war_hammer_head = 1)
 	time = 40
-	category = CAT_SMITH
+	category = CAT_DWARF
+	always_available = FALSE
 
 /datum/crafting_recipe/smith_armour
 	name = "Forged Armour"
@@ -53,7 +57,8 @@
 				/obj/item/mold_result/armour_plating = 1)
 	parts = list(/obj/item/mold_result/armour_plating = 1)
 	time = 40
-	category = CAT_SMITH
+	category = CAT_DWARF
+	always_available = FALSE
 
 /datum/crafting_recipe/smith_helmet
 	name = "Forged Helmet"
@@ -62,4 +67,5 @@
 				/obj/item/mold_result/helmet_plating = 1)
 	parts = list(/obj/item/mold_result/helmet_plating = 1)
 	time = 40
-	category = CAT_SMITH
+	category = CAT_DWARF
+	always_available = FALSE

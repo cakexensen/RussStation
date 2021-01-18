@@ -32,7 +32,7 @@
 
 //Forged Armour
 /obj/item/clothing/suit/armor/vest/dwarf
-	name = "dwarfven armour"
+	name = "dwarven armour"
 	desc = "Great for stopping sponges."
 	worn_icon = 'russstation/icons/mob/suit.dmi'
 	icon = 'russstation/icons/obj/clothing/suits.dmi'

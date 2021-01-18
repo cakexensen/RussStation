@@ -22,6 +22,10 @@
 	force = 10
 	w_class = WEIGHT_CLASS_TINY
 
+/obj/item/melee/smith_hammer/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/dwarf_rune)
+
 //Forged Broadsword
 /obj/item/melee/smithed_sword
 	name = "unobtanium broadsword"
@@ -31,6 +35,10 @@
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "claymore"
 	inhand_icon_state = "claymore"
+
+/obj/item/melee/smithed_sword/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/dwarf_rune)
 
 /obj/item/melee/smithed_sword/CheckParts(list/parts_list)
 	..()
@@ -54,6 +62,10 @@
 	icon_state = "spickaxe"
 	inhand_icon_state = "spickaxe"
 
+/obj/item/pickaxe/smithed_pickaxe/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/dwarf_rune)
+
 /obj/item/pickaxe/smithed_pickaxe/CheckParts(list/parts_list)
 	..()
 	var/obj/item/mold_result/pickaxe_head/P = locate() in contents
@@ -76,6 +88,10 @@
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "shovel"
 	inhand_icon_state = "shovel"
+
+/obj/item/shovel/smelted_shovel/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/dwarf_rune)
 
 /obj/item/shovel/smithed_shovel/CheckParts(list/parts_list)
 	..()
@@ -102,6 +118,10 @@
 	icon = 'russstation/icons/obj/blacksmithing.dmi'
 	icon_state = "knife_base"
 	inhand_icon_state = "knife"
+
+/obj/item/kitchen/knife/smelted_knife/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/dwarf_rune)
 
 /obj/item/kitchen/knife/smelted_knife/CheckParts(list/parts_list)
 	..()
@@ -148,4 +168,5 @@
 
 /obj/item/smithed_war_hammer/ComponentInitialize()
 	. = ..()
+	AddComponent(/datum/component/dwarf_rune)
 	AddComponent(/datum/component/two_handed, require_twohands=TRUE, force_multiplier=2)
