@@ -16,13 +16,13 @@
 	mutanteyes = /obj/item/organ/eyes/night_vision
 	species_language_holder = /datum/language_holder/dwarf
 	// dwarves start with knowledge of their special recipes
-	dwarf_recipes = list(/datum/crafting_recipe/broadsword,
+	var/list/dwarf_recipes = list(/datum/crafting_recipe/broadsword,
 		/datum/crafting_recipe/pickaxe,
 		/datum/crafting_recipe/shovel,
 		/datum/crafting_recipe/knife,
 		/datum/crafting_recipe/war_hammer,
-		/datum/crafting_recipe/smith_armour,
-		/datum/crafting_recipe/smith_helmet,
+		/datum/crafting_recipe/smithed_armour,
+		/datum/crafting_recipe/smithed_helmet,
 		/datum/crafting_recipe/dwarf_rune)
 
 /datum/species/dwarf/on_species_gain(mob/living/carbon/human/C, datum/species/old_species, pref_load)

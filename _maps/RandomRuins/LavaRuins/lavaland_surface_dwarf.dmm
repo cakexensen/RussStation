@@ -54,8 +54,7 @@
 /area/lavaland/surface/dorf)
 "o" = (
 /obj/structure/table/wood,
-/obj/item/crucible_tongs,
-/obj/item/reagent_containers/glass/bucket/iron_crucible_bucket,
+/obj/item/molten_container/crucible,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/dorf)
 "p" = (

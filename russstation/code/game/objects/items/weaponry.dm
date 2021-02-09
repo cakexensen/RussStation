@@ -82,14 +82,14 @@
 		sharpness = P.sharpness
 
 //Forged Shovel
-/obj/item/shovel/smelted_shovel
+/obj/item/shovel/smithed_shovel
 	name = "unobtanium shovel"
 	desc = "A shovel made of unobtanium, you probably shouldn't be seeing this."
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "shovel"
 	inhand_icon_state = "shovel"
 
-/obj/item/shovel/smelted_shovel/ComponentInitialize()
+/obj/item/shovel/smithed_shovel/ComponentInitialize()
 	. = ..()
 	AddComponent(/datum/component/dwarf_rune)
 
@@ -112,18 +112,18 @@
 		sharpness = S.sharpness
 
 //Forged Knife
-/obj/item/kitchen/knife/smelted_knife
+/obj/item/kitchen/knife/smithed_knife
 	name = "unobtanium knife"
 	desc = "A knife made of unobtainum, you probably shouldn't be seeing this."
 	icon = 'russstation/icons/obj/blacksmithing.dmi'
 	icon_state = "knife_base"
 	inhand_icon_state = "knife"
 
-/obj/item/kitchen/knife/smelted_knife/ComponentInitialize()
+/obj/item/kitchen/knife/smithed_knife/ComponentInitialize()
 	. = ..()
 	AddComponent(/datum/component/dwarf_rune)
 
-/obj/item/kitchen/knife/smelted_knife/CheckParts(list/parts_list)
+/obj/item/kitchen/knife/smithed_knife/CheckParts(list/parts_list)
 	..()
 	var/obj/item/mold_result/knife_head/K = locate() in contents
 	if(K)
@@ -135,7 +135,7 @@
 		force = K.attack_amt * 0.5 //chin choppa, CHIN CHOPPA
 		desc = "A knife with a [K.material_type] head."
 		armour_penetration = K.armour_penetration * 0.5
-		sharpness = K.sharpness * 1
+		sharpness = K.sharpness
 
 //Forged War Hammer
 /obj/item/smithed_war_hammer
