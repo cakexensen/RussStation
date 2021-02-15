@@ -1,3 +1,10 @@
+/datum/outfit/dorf
+	name = "Dwarf Standard"
+	uniform = /obj/item/clothing/under/dwarf
+	shoes = /obj/item/clothing/shoes/dwarf
+	back = /obj/item/storage/backpack/satchel/leather
+	gloves = /obj/item/clothing/gloves/dwarf
+
 //Dwarf-unique clothes
 /obj/item/clothing/under/dwarf
 	name = "dwarven tunic"

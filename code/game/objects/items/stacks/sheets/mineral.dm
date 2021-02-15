@@ -27,8 +27,10 @@ Mineral Sheets
 GLOBAL_LIST_INIT(sandstone_recipes, list ( \
 	new/datum/stack_recipe("pile of dirt", /obj/machinery/hydroponics/soil, 3, time = 10, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("sandstone door", /obj/structure/mineral_door/sandstone, 10, one_per_turf = TRUE, on_floor = TRUE), \
-	new/datum/stack_recipe("Breakdown into sand", /obj/item/stack/ore/glass, 1, one_per_turf = FALSE, on_floor = TRUE) \
+	new/datum/stack_recipe("Breakdown into sand", /obj/item/stack/ore/glass, 1, one_per_turf = FALSE, on_floor = TRUE), \
+	new/datum/stack_recipe("Breakdown into clay", /obj/item/stack/sheet/mineral/clay, 1, one_per_turf = FALSE, on_floor = TRUE) \
 	))
+	// honk - new way to make clay; comment BREAKS if it's betwixt the run \ on \ line stuff
 
 /obj/item/stack/sheet/mineral/sandstone
 	name = "sandstone brick"

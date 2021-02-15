@@ -27,7 +27,7 @@
 	name = "Dwarven Enchantment Rune"
 	result = /obj/item/dwarf_rune
 	reqs = list(/datum/reagent/water = 50, /obj/item/stack/sheet/mineral/wood = 1, /obj/item/stack/sheet/mineral/plasma = 1)
-	tools = list(/obj/item/pen, /obj/item/melee/smith_hammer)
+	tools = list(/obj/item/melee/smith_hammer)
 	time = 100
 	category = CAT_DWARF
 	always_available = FALSE

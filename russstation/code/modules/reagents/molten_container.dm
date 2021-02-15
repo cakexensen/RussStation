@@ -10,6 +10,15 @@
 	. = ..()
 	create_reagents(volume, reagent_flags)
 
+/obj/item/molten_container/on_reagent_change(changetype)
+	update_icon()
+
+/obj/item/molten_container/update_icon_state()
+	if(reagents.total_volume > 0)
+		icon_state = base_icon_state + "_filled"
+	else
+		icon_state = base_icon_state
+
 /obj/item/molten_container/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	. = ..()
 	SplashReagents(hit_atom, TRUE)
@@ -51,6 +60,7 @@
 	desc = "A crucible used to hold smelted ore."
 	icon = 'russstation/icons/obj/blacksmithing.dmi'
 	icon_state = "iron_crucible"
+	base_icon_state = "iron_crucible"
 
 // Smelting molds - make from clay, pour in molten ore, whack into shape
 /obj/item/molten_container/smelt_mold
@@ -66,25 +76,18 @@
 	if(istype(W, /obj/item/molten_container/crucible))
 		// pour if there's enough in the crucible - easier to handle this as all-or-nothing
 		var/obj/item/molten_container/crucible/crucible = W
-		if(reagents.total_volume >= current_mold.volume)
-			to_chat(user, "<span class='notice'>[current_mold] is already filled.</span>")
-		else if(crucible.reagents.total_volume >= volume)
-			crucible.reagents.trans_to(src, volume)
-			update_icon()
-			user.visible_message("[user] pours the contents of [crucible] into [src].", "You pour the contents of [crucible] into [src].", "<span class='hear'>You hear a sizzling sound.</span>")
-		else
+		if(reagents.total_volume >= volume)
+			to_chat(user, "<span class='notice'>[src] is already filled.</span>")
+		else if(crucible.reagents.total_volume < volume)
 			to_chat(user, "<span class='notice'>[crucible] needs [volume] units of molten metal all at once to fill [src].</span>")
+		else if(do_after(user, 10, src))
+			crucible.reagents.trans_to(src, volume)
+			user.visible_message("[user] pours the contents of [crucible] into [src].", "You pour the contents of [crucible] into [src].", "<span class='hear'>You hear a sizzling sound.</span>")
 	else if(istype(W, /obj/item/melee/smith_hammer))
 		// mold placed on an anvil becomes "part of" the anvil, so this code only occurs if the mold is elsewhere
 		to_chat(user, "<span class='notice'>[src] needs to be placed on an anvil to smith it.</span>")
 	else
 		..()
-
-/obj/item/molten_container/smelt_mold/update_icon_state()
-	if(reagents.total_volume > 0)
-		icon_state = base_icon_state + "_filled"
-	else
-		icon_state = base_icon_state
 
 /obj/item/molten_container/smelt_mold/sword
 	name = "sword mold"
@@ -100,21 +103,21 @@
 	base_icon_state = "mold_pickaxe"
 	produce_type = /obj/item/mold_result/pickaxe_head
 
-/obj/item/molten_container/smelt_mold/shovel 
+/obj/item/molten_container/smelt_mold/shovel
 	name = "shovel mold"
 	desc = "A clay mold of a shovel head."
 	icon_state = "mold_shovel"
 	base_icon_state = "mold_shovel"
 	produce_type = /obj/item/mold_result/shovel_head
 
-/obj/item/molten_container/smelt_mold/knife 
+/obj/item/molten_container/smelt_mold/knife
 	name = "knife mold"
 	desc = "A clay mold of a knife head."
 	icon_state = "mold_knife"
 	base_icon_state = "mold_knife"
 	produce_type = /obj/item/mold_result/knife_head
 
-/obj/item/molten_container/smelt_mold/war_hammer 
+/obj/item/molten_container/smelt_mold/war_hammer
 	name = "war hammer mold"
 	desc = "A clay mold of a war hammer head."
 	icon_state = "mold_war_hammer"
@@ -122,7 +125,7 @@
 	produce_type = /obj/item/mold_result/war_hammer_head
 
 //Bar / Sheet metal mold
-/obj/item/molten_container/smelt_mold/bar 
+/obj/item/molten_container/smelt_mold/bar
 	name = "bar mold"
 	desc = "A clay mold of a bar."
 
@@ -133,7 +136,7 @@
 	base_icon_state = "mold_shovel"
 	produce_type = /obj/item/mold_result/helmet_plating
 
-/obj/item/molten_container/smelt_mold/armour 
+/obj/item/molten_container/smelt_mold/armour
 	name = "armour mold"
 	desc = "A clay mold of armour plating."
 	icon_state = "mold_shovel"

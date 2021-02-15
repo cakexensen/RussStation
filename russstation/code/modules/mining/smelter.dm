@@ -3,6 +3,7 @@
 	desc = "A furnace to smelt ores."
 	icon = 'russstation/icons/obj/blacksmithing.dmi'
 	icon_state = "forge"
+	base_icon_state = "forge"
 	density = TRUE
 	anchored = FALSE // why?
 	var/obj/item/molten_container/crucible/crucible = null
@@ -18,60 +19,67 @@
 		/obj/item/stack/ore/plasma,
 		/obj/item/stack/ore/bananium,
 		/obj/item/stack/ore/titanium)
-	// make a small light source?
+	var/glow_brightness = 4
+	var/glow_power = 0.6
+	var/glow_color = "#FF5500"
 
 /obj/machinery/smelter/attackby(obj/item/W, mob/living/user, params)
-	if(istype(W, /obj/item/grown/log))
+	if(istype(W, /obj/item/grown/log) || istype(W, /obj/item/stack/sheet/mineral/wood))
 		if(!(fuel >= volume)) //add fuel
-			user.visible_message("[user] adds the [W.name] to the [src].", "You add the [W.name] to the fuel supply of the [src].", "<span class='hear'>You hear the roar of a fire.</span>")
+			user.visible_message("[user] adds the [W.name] to the [src.name].", "You add the [W.name] to the fuel supply of the [src.name].", "<span class='hear'>You hear the roar of a fire.</span>")
 			fuel += 5
 			if(fuel > volume) //adjust fuel if it goes over the max
 				fuel = volume
 			update_desc()
+			update_icon()
 			user.dropItemToGround(W)
 			qdel(W)
 		else
-			to_chat(user, "No more fuel will fit in the [src].")
+			to_chat(user, "No more fuel will fit in the [src.name].")
 
 	else if(istype(W, /obj/item/molten_container/crucible))
 		if(!crucible) //load in bucket
-			user.visible_message("[user] loads the [src] with a [crucible]", "You load the [src] with a [crucible].")
 			crucible = W
+			user.visible_message("[user] loads the [src.name] with a [crucible]", "You load the [src.name] with a [crucible].")
 			user.dropItemToGround(W)
 			W.loc = src
 			update_desc()
 		else
-			to_chat(user, "<span class='notice'>The [src] already has a [crucible].</span>")
+			to_chat(user, "<span class='notice'>The [src.name] already has a [crucible].</span>")
 
 	else if(istype(W, /obj/item/stack/ore))
 		if(!crucible || fuel == 0) //need ore and bucket loaded
-			to_chat(user, "The [src] needs fuel and a crucible before it can smelt ore.")
+			to_chat(user, "The [src.name] needs fuel and a crucible before it can smelt ore.")
 		else if(!is_type_in_list(W, allowed_ores))
-			to_chat(user, "[src] cannot smelt the [W].")
+			to_chat(user, "[src.name] cannot smelt the [W.name].")
 		else
 			if(crucible.reagents.total_volume >= crucible.volume)
 				to_chat(user, "The [crucible] is full.")
-			else if(do_after(user, 10, target = src))
+			else
 				var/obj/item/stack/ore/current_ore = W
 				var/smelting_result = current_ore.reagent_id
-				if(smelting_result && current_ore.amount > 0)
-					user.visible_message("[user] puts the [W] in the [src] and it melts.", "You put the [W] in the [src] and it melts.")
+				// keep adding ore, small do_after so user can stop putting it all in
+				while (smelting_result && current_ore.amount > 0 && fuel > 0 && crucible.reagents.total_volume < crucible.volume && do_after(user, 5, target = src))
+					user.visible_message("[user] puts the [W] in the [src.name] and it melts.", "You put the [W.name] in the [src.name] and it melts.")
 					crucible.reagents.add_reagent(smelting_result, (5))
 					crucible.reagents.chem_temp = 1000
 					crucible.reagents.handle_reactions()
 					current_ore.amount--
 					fuel--
 					update_desc()
+					update_icon()
 
-					if(current_ore.amount == 0)
-						qdel(W)
+				if(current_ore.amount == 0)
+					qdel(W)
 
 /obj/machinery/smelter/attack_hand(mob/user)
 	if(crucible)
 		crucible.forceMove(drop_location())
-		user.visible_message("[user] takes the [crucible] out of the [src].", "You take the [crucible] out of the [src].")
+		user.visible_message("[user] takes the [crucible] out of the [src.name].", "You take the [crucible] out of the [src.name].")
 		if(Adjacent(user) && !issilicon(user))
 			user.put_in_hands(crucible)
+		crucible = null
+		update_desc()
 	else
 		..()
 
@@ -81,6 +89,15 @@
 		desc += "It is loaded with a crucible. "
 	if(fuel > 0)
 		desc += "It has [fuel] of [volume] possible units of fuel."
+
+/obj/machinery/smelter/update_icon_state()
+	// also change lighting since it's connected to icon state
+	if(fuel > 0)
+		icon_state = base_icon_state + "_fueled"
+		set_light(glow_brightness, glow_power, glow_color)
+	else
+		icon_state = base_icon_state
+		set_light(0)
 
 /obj/machinery/anvil
 	name = "anvil"
@@ -95,14 +112,17 @@
 
 /obj/machinery/anvil/attackby(obj/item/W, mob/living/user, params)
 	if(istype(W, /obj/item/molten_container) && user.a_intent == INTENT_HARM)
-		var/obj/item/molten_container/container
+		var/obj/item/molten_container/container = W
 		container.SplashReagents(src) // you idiot
+		cut_overlay(my_mold)
+		my_mold = mutable_appearance('russstation/icons/obj/blacksmithing.dmi', current_mold.icon_state)
+		add_overlay(my_mold)
 	else if(istype(W, /obj/item/molten_container/smelt_mold))
 		if(current_mold)
 			to_chat(user, "There's already a mold on the anvil.")
 		else
 			var/obj/item/molten_container/smelt_mold/M = W
-			user.visible_message("[user] places [M] on the [src].", "You place [M] on the [src].", "<span class='hear'>You hear something being set on a surface.</span>")
+			user.visible_message("[user] places [M] on the [src.name].", "You place [M] on the [src.name].", "<span class='hear'>You hear something being set on a surface.</span>")
 			user.dropItemToGround(M)
 			M.loc = src
 			current_mold = M
@@ -142,9 +162,8 @@
 			to_chat(user, "<span class='notice'>[current_mold] is already filled.</span>")
 		else if(crucible.reagents.total_volume < current_mold.volume)
 			to_chat(user, "<span class='notice'>[crucible] needs [current_mold.volume] units of molten metal all at once to fill [current_mold].</span>")
-		else
-			crucible.reagents.trans_to(src, current_mold.volume)
-			crucible.update_icon()
+		else if(do_after(user, 10, target = src))
+			crucible.reagents.trans_to(current_mold, current_mold.volume)
 			cut_overlay(my_mold)
 			my_mold = mutable_appearance('russstation/icons/obj/blacksmithing.dmi', current_mold.icon_state)
 			add_overlay(my_mold)
@@ -186,49 +205,42 @@
 /obj/item/mold_result/blade
 	name = "blade"
 	desc = "A blade made of "
-	icon = 'russstation/icons/obj/blacksmithing.dmi'
 	icon_state = "sword_blade"
 	mold_type = "offensive"
 
 /obj/item/mold_result/pickaxe_head
 	name = "pickaxe head"
 	desc = "A pickaxe head made of "
-	icon = 'russstation/icons/obj/blacksmithing.dmi'
 	icon_state = "pickaxe_head"
 	mold_type = "digging"
 
 /obj/item/mold_result/shovel_head
 	name = "shovel head"
 	desc = "A shovel head made of "
-	icon = 'russstation/icons/obj/blacksmithing.dmi'
 	icon_state = "shovel_head"
 	mold_type = "digging"
 
 /obj/item/mold_result/knife_head
 	name = "knife head"
 	desc = "A butchering knife head made of "
-	icon = 'russstation/icons/obj/blacksmithing.dmi'
 	icon_state = "knife_head"
 	mold_type = "offensive"
 
 /obj/item/mold_result/war_hammer_head
 	name = "warhammer head"
 	desc = "A warhammer head made of "
-	icon = 'russstation/icons/obj/blacksmithing.dmi'
 	icon_state = "war_hammer_head"
 	mold_type = "offensive"
 
 /obj/item/mold_result/armour_plating
 	name = "armour plating"
 	desc = "Armour plating made of"
-	icon = 'russstation/icons/obj/blacksmithing.dmi'
 	icon_state = "armour"
 	mold_type = "offensive"
 
 /obj/item/mold_result/helmet_plating
 	name = "helmet plating"
 	desc = "Helmet plating made of"
-	icon = 'russstation/icons/obj/blacksmithing.dmi'
 	icon_state = "helmet"
 	mold_type = "offensive"
 

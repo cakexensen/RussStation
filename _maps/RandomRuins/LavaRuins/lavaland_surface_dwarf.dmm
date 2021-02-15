@@ -6,18 +6,21 @@
 /obj/item/grown/log/tree,
 /obj/item/grown/log/tree,
 /obj/item/grown/log/tree,
-/obj/item/flashlight/lantern{
-	on = 1
-	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/dorf)
 "b" = (
 /obj/structure/table/wood,
-/obj/item/shovel,
-/obj/item/shovel,
-/obj/item/paper{
-	info = "In order to make a mold for the forging process clay is required. The easiest way to obtain clay is by dunking some sand or ash in water. Other areas are said to have clay deposits found everywhere. How useless all that clay would be.";
-	name = "Making Molds"
+/obj/item/shovel{
+	pixel_x = 2;
+	pixel_y = -1
+	},
+/obj/item/shovel{
+	pixel_x = -2;
+	pixel_y = 4
+	},
+/obj/item/book/granter/crafting_recipe/dwarf{
+	pixel_x = -3;
+	pixel_y = 3
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/dorf)
@@ -54,17 +57,18 @@
 /area/lavaland/surface/dorf)
 "o" = (
 /obj/structure/table/wood,
+/obj/item/molten_container/crucible{
+	pixel_x = -5;
+	pixel_y = 4
+	},
 /obj/item/molten_container/crucible,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/dorf)
 "p" = (
-/obj/item/reagent_containers/glass/bucket/wooden,
-/obj/item/reagent_containers/glass/bucket/wooden,
 /obj/structure/table/wood,
 /obj/item/storage/bag/plants/portaseeder,
-/obj/item/flashlight/lantern{
-	on = 1
-	},
+/obj/item/reagent_containers/glass/bucket/wooden,
+/obj/item/reagent_containers/glass/bucket/wooden,
 /turf/open/floor/plating/asteroid{
 	initial_gas_mix = "LAVALAND_ATMOS"
 	},
@@ -72,6 +76,14 @@
 "q" = (
 /obj/item/hatchet,
 /obj/item/hatchet,
+/turf/open/floor/plating/asteroid{
+	initial_gas_mix = "LAVALAND_ATMOS"
+	},
+/area/lavaland/surface/dorf)
+"u" = (
+/obj/item/flashlight/lantern{
+	on = 1
+	},
 /turf/open/floor/plating/asteroid{
 	initial_gas_mix = "LAVALAND_ATMOS"
 	},
@@ -93,20 +105,46 @@
 /obj/item/reagent_containers/food/snacks/grown/mushroom/plumphelmet,
 /obj/item/reagent_containers/food/snacks/grown/mushroom/plumphelmet,
 /obj/item/reagent_containers/food/snacks/grown/mushroom/plumphelmet,
-/obj/item/reagent_containers/food/snacks/grown/mushroom/plumphelmet,
-/obj/item/reagent_containers/food/snacks/grown/mushroom/plumphelmet,
-/obj/item/reagent_containers/food/snacks/grown/mushroom/plumphelmet,
-/obj/item/reagent_containers/food/snacks/grown/mushroom/plumphelmet,
+/obj/item/reagent_containers/food/snacks/grown/mushroom/plumphelmet{
+	pixel_x = 10
+	},
+/obj/item/reagent_containers/food/snacks/grown/mushroom/plumphelmet{
+	pixel_x = 10
+	},
+/obj/item/reagent_containers/food/snacks/grown/mushroom/plumphelmet{
+	pixel_x = 10
+	},
+/obj/item/reagent_containers/food/snacks/grown/mushroom/plumphelmet{
+	pixel_x = 10
+	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/dorf)
 "E" = (
 /mob/living/simple_animal/cow/lavaland,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/dorf)
+"G" = (
+/obj/item/shovel,
+/obj/item/shovel,
+/turf/open/floor/plating/asteroid{
+	initial_gas_mix = "LAVALAND_ATMOS"
+	},
+/area/lavaland/surface/dorf)
 "H" = (
 /obj/structure/table/wood,
-/obj/item/melee/smith_hammer,
-/obj/item/melee/smith_hammer,
+/obj/item/melee/smith_hammer{
+	pixel_x = 5;
+	pixel_y = -2
+	},
+/obj/item/melee/smith_hammer{
+	pixel_x = 5;
+	pixel_y = 3
+	},
+/obj/item/paper{
+	info = "To make fine Dwarven equipment you will first need to collect ore by mining. The smelter will melt down ore to extract its metal, which requires you to insert logs and a crucible. Interact with the smelter again to remove the crucible.\n\nNow you need a clay mold to pour your metal into. Clay can be made by compacting sand or ash into sandstone, and then breaking it back down. Other areas are said to have clay deposits found everywhere. How useless all that clay would be.\n\nNext, pour the crucible contents into the mold. Place the mold on the anvil and hit it with the smithing hammer to form your metal. Finally, craft the metal piece with materials like logs or leather to complete your equipment.";
+	name = "Dwarven Smithing";
+	pixel_x = -3
+	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/dorf)
 "I" = (
@@ -164,15 +202,27 @@
 /obj/item/reagent_containers/food/drinks/wooden_mug,
 /obj/item/reagent_containers/food/drinks/wooden_mug,
 /obj/item/reagent_containers/food/drinks/wooden_mug,
-/obj/item/reagent_containers/food/drinks/wooden_mug,
-/obj/item/reagent_containers/food/drinks/wooden_mug,
-/obj/item/reagent_containers/food/drinks/wooden_mug,
+/obj/item/reagent_containers/food/drinks/wooden_mug{
+	pixel_x = 6
+	},
+/obj/item/reagent_containers/food/drinks/wooden_mug{
+	pixel_x = 6
+	},
+/obj/item/reagent_containers/food/drinks/wooden_mug{
+	pixel_x = 6
+	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/dorf)
 "W" = (
 /obj/structure/table/wood,
-/obj/item/pickaxe,
-/obj/item/pickaxe,
+/obj/item/pickaxe{
+	pixel_x = 3;
+	pixel_y = -2
+	},
+/obj/item/pickaxe{
+	pixel_x = -4;
+	pixel_y = 3
+	},
 /obj/item/areaeditor/blueprints/dwarf,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/dorf)
@@ -306,7 +356,7 @@ Z
 H
 e
 e
-e
+j
 U
 Z
 A
@@ -527,7 +577,7 @@ f
 f
 i
 f
-f
+u
 Z
 A
 A
@@ -548,7 +598,7 @@ e
 f
 f
 f
-f
+G
 f
 Z
 A

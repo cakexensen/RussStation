@@ -27,19 +27,3 @@
 	var/area/A = get_area(src)
 	if(A)
 		notify_ghosts("A dwarven dorm was made and ready to use in \the [A.name].", source = src, action=NOTIFY_ATTACK, flashwindow = FALSE, ignore_key = POLL_IGNORE_DWARF)
-
-/datum/outfit/dorf
-	name = "Dwarf Standard"
-	uniform = /obj/item/clothing/under/dwarf
-	shoes = /obj/item/clothing/shoes/dwarf
-	back = /obj/item/storage/backpack/satchel/leather
-	gloves = /obj/item/clothing/gloves/dwarf
-
-/obj/item/reagent_containers/food/drinks/wooden_mug
-	name = "wooden mug"
-	desc = "A mug for serving hearty brews."
-	icon_state = "manlydorfglass"
-	inhand_icon_state = "coffee"
-	spillable = 1
-	isGlass = FALSE
-

@@ -32,8 +32,8 @@
 	desc = "A broadsword made of unobtanium, you probably shouldn't be seeing this."
 	attack_verb_continuous = list("attacks", "slashs", "stabs", "slices", "tears", "rips", "dices", "cuts")
 	attack_verb_simple = list("attack", "slash", "stab", "slice", "tear", "rip", "dice", "cut")
-	icon = 'icons/obj/items_and_weapons.dmi'
-	icon_state = "claymore"
+	icon = 'russstation/icons/obj/blacksmithing.dmi'
+	icon_state = "sword_base"
 	inhand_icon_state = "claymore"
 
 /obj/item/melee/smithed_sword/ComponentInitialize()
@@ -44,7 +44,7 @@
 	..()
 	var/obj/item/mold_result/blade/B = locate() in contents
 	if(B)
-		var/image/I = image('russstation/icons/obj/blacksmithing.dmi', "sword_blade")
+		var/image/I = image('russstation/icons/obj/blacksmithing.dmi', "sword_blade_overlay")
 		I.color = B.color
 		smelted_material = new B.smelted_material.type()
 		add_overlay(I)
@@ -58,8 +58,8 @@
 /obj/item/pickaxe/smithed_pickaxe
 	name = "unobtanium pickaxe"
 	desc = "A pickaxe made of unobtanium, you probably shouldn't be seeing this."
-	icon = 'icons/obj/mining.dmi'
-	icon_state = "spickaxe"
+	icon = 'russstation/icons/obj/blacksmithing.dmi'
+	icon_state = "pickaxe_base"
 	inhand_icon_state = "spickaxe"
 
 /obj/item/pickaxe/smithed_pickaxe/ComponentInitialize()
@@ -70,7 +70,7 @@
 	..()
 	var/obj/item/mold_result/pickaxe_head/P = locate() in contents
 	if(P)
-		var/image/I = image('russstation/icons/obj/blacksmithing.dmi', "pickaxe_head")
+		var/image/I = image('russstation/icons/obj/blacksmithing.dmi', "pickaxe_head_overlay")
 		I.color = P.color
 		smelted_material = new P.smelted_material.type()
 		add_overlay(I)
@@ -97,7 +97,7 @@
 	..()
 	var/obj/item/mold_result/shovel_head/S = locate() in contents
 	if(S)
-		var/image/I = image('russstation/icons/obj/blacksmithing.dmi', "shovel_head")
+		var/image/I = image('russstation/icons/obj/blacksmithing.dmi', "shovel_head_overlay")
 		I.color = S.color
 		add_overlay(I)
 		smelted_material = new S.smelted_material.type()
@@ -127,7 +127,7 @@
 	..()
 	var/obj/item/mold_result/knife_head/K = locate() in contents
 	if(K)
-		var/image/I = image('russstation/icons/obj/blacksmithing.dmi', "knife_head")
+		var/image/I = image('russstation/icons/obj/blacksmithing.dmi', "knife_head_overlay")
 		I.color = K.color
 		add_overlay(I)
 		smelted_material = new K.smelted_material.type()
@@ -155,7 +155,7 @@
 	..()
 	var/obj/item/mold_result/war_hammer_head/W = locate() in contents
 	if(W)
-		var/image/I = image('russstation/icons/obj/blacksmithing.dmi', "war_hammer_head")
+		var/image/I = image('russstation/icons/obj/blacksmithing.dmi', "war_hammer_head_overlay")
 		I.color = W.color
 		add_overlay(I)
 		smelted_material = new W.smelted_material.type()

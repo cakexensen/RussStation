@@ -11,15 +11,16 @@ GLOBAL_LIST_INIT(clay_recipes, list(
 	new /datum/stack_recipe("hammer mold", /obj/item/molten_container/smelt_mold/war_hammer, req_amount=1, res_amount=1), \
 	new /datum/stack_recipe("armour mold", /obj/item/molten_container/smelt_mold/armour, req_amount=1, res_amount=1), \
 	new /datum/stack_recipe("helmet mold", /obj/item/molten_container/smelt_mold/helmet, req_amount=1, res_amount=1), \
+	new /datum/stack_recipe("Dry into sand", /obj/item/stack/ore/glass, req_amount=1, one_per_turf = FALSE, on_floor = TRUE) \
 	))
 
-/obj/item/stack/sheet/mineral/clay 
+/obj/item/stack/sheet/mineral/clay
 	name = "clay"
 	icon = 'russstation/icons/obj/stack_objects.dmi'
 	icon_state = "sheet-clay"
 	singular_name = "clay lump"
 	layer = LOW_ITEM_LAYER
-	merge_type = /obj/item/stack/sheet/mineral/clay 
+	merge_type = /obj/item/stack/sheet/mineral/clay
 	sheettype = "clay"
 
 /obj/item/stack/sheet/mineral/clay/get_main_recipes()
