@@ -12,7 +12,7 @@
 	icon = 'russstation/icons/obj/clothing/uniforms.dmi'
 	worn_icon = 'russstation/icons/mob/uniform.dmi'
 	icon_state = "dwarf"
-	inhand_icon_state = "dwarf"
+	inhand_icon_state = "dwarf_suit"
 	body_parts_covered = CHEST|GROIN|ARMS
 	can_adjust = FALSE
 	species_exception = list(/datum/species/dwarf)
@@ -23,7 +23,7 @@
 	worn_icon = 'russstation/icons/mob/hands.dmi'
 	icon = 'russstation/icons/obj/clothing/gloves.dmi'
 	icon_state = "dwarf"
-	inhand_icon_state = "dwarf"
+	inhand_icon_state = "bgloves"
 	body_parts_covered = ARMS
 	species_exception = list(/datum/species/dwarf)
 
@@ -33,7 +33,7 @@
 	worn_icon = 'russstation/icons/mob/feet.dmi'
 	icon = 'russstation/icons/obj/clothing/shoes.dmi'
 	icon_state = "dwarf"
-	inhand_icon_state = "dwarf"
+	inhand_icon_state = "jackboots"
 	body_parts_covered = FEET
 	species_exception = list(/datum/species/dwarf)
 
@@ -44,7 +44,7 @@
 	worn_icon = 'russstation/icons/mob/suit.dmi'
 	icon = 'russstation/icons/obj/clothing/suits.dmi'
 	icon_state = "dwarf"
-	inhand_icon_state = "dwarf"
+	inhand_icon_state = "swat_suit"
 	body_parts_covered = CHEST|GROIN|ARMS
 	cold_protection = CHEST|GROIN|ARMS
 	heat_protection = CHEST|GROIN|ARMS
@@ -74,7 +74,7 @@
 	worn_icon= 'russstation/icons/mob/head.dmi'
 	icon = 'russstation/icons/obj/clothing/hats.dmi'
 	icon_state = "dwarf"
-	inhand_icon_state = "dwarf"
+	inhand_icon_state = "dwarf_helm"
 	body_parts_covered = HEAD
 	species_exception = list(/datum/species/dwarf)
 

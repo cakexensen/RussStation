@@ -26,6 +26,7 @@
 		return
 	enchanted = TRUE
 	rune.expend()
+	to_chat(user, "<span class='notice'>You rub the [attacker] on [source] and it becomes enchanted.</span>")
 
 /datum/component/dwarf_rune/proc/onItemAttack(datum/source, atom/movable/target, mob/living/user)
 	SIGNAL_HANDLER

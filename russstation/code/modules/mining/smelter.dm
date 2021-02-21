@@ -138,6 +138,7 @@
 			current_mold.SplashReagents(user) // splash on self for idiocy
 		else
 			user.visible_message("[user] breaks the result out of the [current_mold] and starts to hammer it into shape.", "You break the result out of the [current_mold] and start to hammer it into shape.", "<span class='hear'>You hear the hammering of metal.</span>")
+			playsound(loc, 'sound/items/gavel.ogg', 50, TRUE, -1)
 			if(do_after(user, 80, target = src))
 				var/datum/reagent/R = current_mold.reagents.get_master_reagent() // future idea: check all reagents, make alloys?
 				if(!istype(current_mold, /obj/item/molten_container/smelt_mold/bar))
@@ -194,6 +195,7 @@
 	desc = "A hardened blob of ore. You shouldn't be seeing this..."
 	icon = 'russstation/icons/obj/blacksmithing.dmi'
 	icon_state = "blob_base"
+	inhand_icon_state = "sheet-metal" // yeah whatever
 	w_class = WEIGHT_CLASS_NORMAL
 	var/material_type = "unobtanium"
 	var/mold_type = "blob"

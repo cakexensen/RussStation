@@ -143,7 +143,9 @@
 	desc = "A warhammer made of unobtainium, you probably shouldn't be seeing this."
 	icon = 'russstation/icons/obj/blacksmithing.dmi'
 	icon_state = "pickaxe_base"
-	inhand_icon_state = "spickaxe"
+	inhand_icon_state = "warhammer"
+	worn_icon = 'russstation/icons/mob/back.dmi'
+	worn_icon_state = "warhammer"
 	force = 11
 	w_class = WEIGHT_CLASS_BULKY
 	slot_flags = ITEM_SLOT_BACK

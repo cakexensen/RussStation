@@ -61,6 +61,7 @@
 	icon = 'russstation/icons/obj/blacksmithing.dmi'
 	icon_state = "iron_crucible"
 	base_icon_state = "iron_crucible"
+	inhand_icon_state = "crucible"
 
 // Smelting molds - make from clay, pour in molten ore, whack into shape
 /obj/item/molten_container/smelt_mold
@@ -69,6 +70,7 @@
 	icon = 'russstation/icons/obj/blacksmithing.dmi'
 	icon_state = "mold1"
 	base_icon_state = "mold1"
+	inhand_icon_state = "mold"
 	volume = 25
 	var/obj/produce_type = null
 
