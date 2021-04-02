@@ -18,7 +18,9 @@
 	desc = "BONK."
 	icon = 'russstation/icons/obj/blacksmithing.dmi'
 	icon_state = "hammer"
-	inhand_icon_state = "sledgehammer"
+	lefthand_file = 'russstation/icons/mob/inhands/item_lefthand.dmi'
+	righthand_file = 'russstation/icons/mob/inhands/item_righthand.dmi'
+	inhand_icon_state = "hammer"
 	force = 10
 	w_class = WEIGHT_CLASS_TINY
 
@@ -143,6 +145,8 @@
 	desc = "A warhammer made of unobtainium, you probably shouldn't be seeing this."
 	icon = 'russstation/icons/obj/blacksmithing.dmi'
 	icon_state = "pickaxe_base"
+	lefthand_file = 'russstation/icons/mob/inhands/item_lefthand.dmi'
+	righthand_file = 'russstation/icons/mob/inhands/item_righthand.dmi'
 	inhand_icon_state = "warhammer"
 	worn_icon = 'russstation/icons/mob/back.dmi'
 	worn_icon_state = "warhammer"

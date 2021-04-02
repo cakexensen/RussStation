@@ -12,6 +12,8 @@
 	icon = 'russstation/icons/obj/clothing/uniforms.dmi'
 	worn_icon = 'russstation/icons/mob/uniform.dmi'
 	icon_state = "dwarf"
+	lefthand_file = 'russstation/icons/mob/inhands/clothing_lefthand.dmi'
+	righthand_file = 'russstation/icons/mob/inhands/clothing_righthand.dmi'
 	inhand_icon_state = "dwarf_suit"
 	body_parts_covered = CHEST|GROIN|ARMS
 	can_adjust = FALSE
@@ -29,7 +31,7 @@
 
 /obj/item/clothing/shoes/dwarf
 	name = "dwarven shoes"
-	desc = "Standered issue dwarven mining shoes."
+	desc = "Standard issue dwarven mining shoes."
 	worn_icon = 'russstation/icons/mob/feet.dmi'
 	icon = 'russstation/icons/obj/clothing/shoes.dmi'
 	icon_state = "dwarf"
@@ -74,8 +76,11 @@
 	worn_icon= 'russstation/icons/mob/head.dmi'
 	icon = 'russstation/icons/obj/clothing/hats.dmi'
 	icon_state = "dwarf"
+	lefthand_file = 'russstation/icons/mob/inhands/clothing_lefthand.dmi'
+	righthand_file = 'russstation/icons/mob/inhands/clothing_righthand.dmi'
 	inhand_icon_state = "dwarf_helm"
-	body_parts_covered = HEAD
+	clothing_flags = SNUG_FIT
+	flags_inv = HIDEHAIR
 	species_exception = list(/datum/species/dwarf)
 
 /obj/item/clothing/head/helmet/dwarf/CheckParts(list/parts_list)
