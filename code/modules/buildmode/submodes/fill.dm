@@ -2,7 +2,7 @@
 
 /datum/buildmode_mode/fill
 	key = "fill"
-	
+
 	use_corner_selection = TRUE
 	var/objholder = null
 
@@ -67,8 +67,6 @@
 				else
 					var/obj/A = new objholder(T)
 					A.setDir(BM.build_dir)
-			log_admin("Build Mode: [key_name(c)] with path [objholder], filled the region from [AREACOORD(cornerA)] through [AREACOORD(cornerB)]")<<<<<<< HEAD
-=======
+			log_admin("Build Mode: [key_name(c)] with path [objholder], filled the region from [AREACOORD(cornerA)] through [AREACOORD(cornerB)]")
 
 #undef FILL_WARNING_MIN
->>>>>>> tgstation/master

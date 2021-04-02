@@ -22,6 +22,7 @@ upstream_branch = upstream + "/master"
 their_dme = "tgstation.dme"
 our_dme = "RussStation.dme"
 epoch_path = "last_merge"
+build_path = "tools/build/build.js"
 # files to skip parsing and take ours or theirs
 ours = ["html/changelog.html",
         "html/changelogs/.all_changelog.yml",
@@ -272,6 +273,19 @@ def process_diffs(repo, last_merge):
             printv("Couldn't revert", path)
             printv(repr(e))
 
+# upstream builds via node instead of just dreammaker now, so make our own copy of that
+def update_build_script(repo):
+    print("Updating build script...")
+    repo.git.checkout(build_path, "--theirs") # ensure we're not starting with a conflicted file
+    content = None
+    with open(build_path, "rt") as build_file:
+        content = build_file.read()
+    with open(build_path, "wt") as build_file:
+    # replace the convenient variable that doesn't have the .dme suffix (and reuse config strings? ¯\_(ツ)_/¯)
+        build_file.write(content.replace("DME_NAME = '" + their_dme[:their_dme.find(".")], "DME_NAME = '" + our_dme[:our_dme.find(".")]))
+    repo.git.add(build_path)
+    printv("Updated build script at", build_path)
+
 # get unique includes from both dmes, combine
 def update_includes(repo):
     preface = []
@@ -373,6 +387,7 @@ if __name__ == "__main__":
         update_last_merge(repo, current_merge)
         preprocess_diffs(repo)
         process_diffs(repo, last_merge)
+        update_build_script(repo)
         update_includes(repo)
         check_ignored(repo)
         finish(repo)
