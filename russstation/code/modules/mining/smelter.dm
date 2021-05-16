@@ -6,7 +6,7 @@
 	base_icon_state = "forge"
 	density = TRUE
 	anchored = FALSE // why?
-	var/obj/item/molten_container/crucible/crucible = null
+	var/obj/item/reagent_containers/molten_container/crucible/crucible = null
 	var/fuel = 0
 	var/volume = 20
 	// stack/ore includes glass and slag, which we don't want?
@@ -26,7 +26,7 @@
 /obj/machinery/smelter/attackby(obj/item/W, mob/living/user, params)
 	if(istype(W, /obj/item/grown/log) || istype(W, /obj/item/stack/sheet/mineral/wood))
 		if(!(fuel >= volume)) //add fuel
-			user.visible_message("[user] adds the [W.name] to the [src.name].", "You add the [W.name] to the fuel supply of the [src.name].", "<span class='hear'>You hear the roar of a fire.</span>")
+			user.visible_message("[user] adds the [W.name] to \the [src.name].", "You add the [W.name] to the fuel supply of \the [src.name].", "<span class='hear'>You hear the roar of a fire.</span>")
 			fuel += 5
 			if(fuel > volume) //adjust fuel if it goes over the max
 				fuel = volume
@@ -35,32 +35,32 @@
 			user.dropItemToGround(W)
 			qdel(W)
 		else
-			to_chat(user, "No more fuel will fit in the [src.name].")
+			to_chat(user, "No more fuel will fit in \the [src.name].")
 
-	else if(istype(W, /obj/item/molten_container/crucible))
+	else if(istype(W, /obj/item/reagent_containers/molten_container/crucible))
 		if(!crucible) //load in bucket
 			crucible = W
-			user.visible_message("[user] loads the [src.name] with a [crucible]", "You load the [src.name] with a [crucible].")
+			user.visible_message("[user] loads \the [src.name] with a [crucible]", "You load \the [src.name] with \a [crucible].")
 			user.dropItemToGround(W)
 			W.loc = src
 			update_desc()
 		else
-			to_chat(user, "<span class='notice'>The [src.name] already has a [crucible].</span>")
+			to_chat(user, "<span class='notice'>\The [src.name] already has a [crucible].</span>")
 
 	else if(istype(W, /obj/item/stack/ore))
 		if(!crucible || fuel == 0) //need ore and bucket loaded
-			to_chat(user, "The [src.name] needs fuel and a crucible before it can smelt ore.")
+			to_chat(user, "\The [src.name] needs fuel and a crucible before it can smelt ore.")
 		else if(!is_type_in_list(W, allowed_ores))
 			to_chat(user, "[src.name] cannot smelt the [W.name].")
 		else
 			if(crucible.reagents.total_volume >= crucible.volume)
-				to_chat(user, "The [crucible] is full.")
+				to_chat(user, "\The [crucible] is full.")
 			else
 				var/obj/item/stack/ore/current_ore = W
 				var/smelting_result = current_ore.reagent_id
 				// keep adding ore, small do_after so user can stop putting it all in
 				while (smelting_result && current_ore.amount > 0 && fuel > 0 && crucible.reagents.total_volume < crucible.volume && do_after(user, 5, target = src))
-					user.visible_message("[user] puts the [W] in the [src.name] and it melts.", "You put the [W.name] in the [src.name] and it melts.")
+					user.visible_message("[user] puts \the [W] in \the [src.name] and it melts.", "You put \the [W.name] in \the [src.name] and it melts.")
 					crucible.reagents.add_reagent(smelting_result, (5))
 					crucible.reagents.chem_temp = 1000
 					crucible.reagents.handle_reactions()
@@ -75,7 +75,7 @@
 /obj/machinery/smelter/attack_hand(mob/user)
 	if(crucible)
 		crucible.forceMove(drop_location())
-		user.visible_message("[user] takes the [crucible] out of the [src.name].", "You take the [crucible] out of the [src.name].")
+		user.visible_message("[user] takes \the [crucible] out of \the [src.name].", "You take \the [crucible] out of \the [src.name].")
 		if(Adjacent(user) && !issilicon(user))
 			user.put_in_hands(crucible)
 		crucible = null
@@ -83,7 +83,8 @@
 	else
 		..()
 
-/obj/machinery/smelter/proc/update_desc()
+/obj/machinery/smelter/update_desc()
+	. = ..()
 	desc = "A furnace to smelt ores. "
 	if(crucible)
 		desc += "It is loaded with a crucible. "
@@ -91,6 +92,7 @@
 		desc += "It has [fuel] of [volume] possible units of fuel."
 
 /obj/machinery/smelter/update_icon_state()
+	. = ..()
 	// also change lighting since it's connected to icon state
 	if(fuel > 0)
 		icon_state = base_icon_state + "_fueled"
@@ -107,22 +109,34 @@
 	density = TRUE
 	anchored = FALSE // again why?
 	// anvil acts like a table only for molds, so they're handled as overlays
-	var/obj/item/molten_container/smelt_mold/current_mold = null
+	var/obj/item/reagent_containers/molten_container/smelt_mold/current_mold = null
 	var/mutable_appearance/my_mold = null
+	var/list/workable_metals = list(
+		/datum/reagent/diamond,
+		/datum/reagent/adamantine,
+		/datum/reagent/dorf_plasma,
+		/datum/reagent/dorf_bananium,
+		/datum/reagent/dorf_titanium,
+		/datum/reagent/silver,
+		/datum/reagent/gold,
+		/datum/reagent/iron,
+		/datum/reagent/uranium
+	)
 
 /obj/machinery/anvil/attackby(obj/item/W, mob/living/user, params)
-	if(istype(W, /obj/item/molten_container) && user.a_intent == INTENT_HARM)
-		var/obj/item/molten_container/container = W
+	if(istype(W, /obj/item/reagent_containers/molten_container) && user.combat_mode)
+		var/obj/item/reagent_containers/molten_container/container = W
 		container.SplashReagents(src) // you idiot
-		cut_overlay(my_mold)
-		my_mold = mutable_appearance('russstation/icons/obj/blacksmithing.dmi', current_mold.icon_state)
-		add_overlay(my_mold)
-	else if(istype(W, /obj/item/molten_container/smelt_mold))
+		if(current_mold)
+			cut_overlay(my_mold)
+			my_mold = mutable_appearance('russstation/icons/obj/blacksmithing.dmi', current_mold.icon_state)
+			add_overlay(my_mold)
+	else if(istype(W, /obj/item/reagent_containers/molten_container/smelt_mold))
 		if(current_mold)
 			to_chat(user, "There's already a mold on the anvil.")
 		else
-			var/obj/item/molten_container/smelt_mold/M = W
-			user.visible_message("[user] places [M] on the [src.name].", "You place [M] on the [src.name].", "<span class='hear'>You hear something being set on a surface.</span>")
+			var/obj/item/reagent_containers/molten_container/smelt_mold/M = W
+			user.visible_message("[user] places [M] on \the [src.name].", "You place [M] on \the [src.name].", "<span class='hear'>You hear something being set on a hard surface.</span>")
 			user.dropItemToGround(M)
 			M.loc = src
 			current_mold = M
@@ -133,15 +147,18 @@
 		if(!current_mold)
 			..()
 		else if(current_mold.reagents.total_volume < current_mold.volume)
-			to_chat(user, "<span class='notice'>The [current_mold] needs to be filled with molten metal first.</span>")
-		else if(user.a_intent == INTENT_HARM)
+			to_chat(user, "<span class='notice'>\The [current_mold] needs to be filled with molten metal first.</span>")
+		else if(user.combat_mode)
 			current_mold.SplashReagents(user) // splash on self for idiocy
 		else
-			user.visible_message("[user] breaks the result out of the [current_mold] and starts to hammer it into shape.", "You break the result out of the [current_mold] and start to hammer it into shape.", "<span class='hear'>You hear the hammering of metal.</span>")
+			// if(!(current_mold.reagents.get_master_reagent() in workable_metals))
+			// 	to_chat(user, "<span class='notice'>\The [current_mold] contains too many non-metal materials that prevent smithing.</span>")
+			// 	return
+			user.visible_message("[user] breaks the result out of \the [current_mold] and starts to hammer it into shape.", "You break the result out of \the [current_mold] and start to hammer it into shape.", "<span class='hear'>You hear the hammering of metal.</span>")
 			playsound(loc, 'sound/items/gavel.ogg', 50, TRUE, -1)
 			if(do_after(user, 80, target = src))
 				var/datum/reagent/R = current_mold.reagents.get_master_reagent() // future idea: check all reagents, make alloys?
-				if(!istype(current_mold, /obj/item/molten_container/smelt_mold/bar))
+				if(!istype(current_mold, /obj/item/reagent_containers/molten_container/smelt_mold/bar))
 					var/obj/item/mold_result/I = new current_mold.produce_type(get_turf(src))
 					I.smelted_material = new R.type()
 					I.post_smithing()
@@ -154,9 +171,9 @@
 				my_mold = null
 				current_mold = null
 				update_desc()
-	else if(istype(W, /obj/item/molten_container/crucible))
+	else if(istype(W, /obj/item/reagent_containers/molten_container/crucible))
 		// allow pouring onto a mold on the anvil (copied from smelt_mold's code)
-		var/obj/item/molten_container/crucible/crucible = W
+		var/obj/item/reagent_containers/molten_container/crucible/crucible = W
 		if(!current_mold)
 			to_chat(user, "<span class='notice'>Use [crucible] to fill a mold first.</span>")
 		else if(current_mold.reagents.total_volume >= current_mold.volume)
@@ -184,10 +201,11 @@
 	else
 		..()
 
-/obj/machinery/anvil/proc/update_desc()
+/obj/machinery/anvil/update_desc()
+	. = ..()
 	desc = "A large metal surface for working metal. "
 	if(current_mold)
-		desc += "There is a [current_mold] on its top."
+		desc += "There is \a [current_mold] on its top."
 
 // Mold results, ie. shaped metal that still needs a handle attached
 /obj/item/mold_result

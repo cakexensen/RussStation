@@ -570,6 +570,8 @@ def fix_build_script(repo):
 		build_content = build_file.read()
 	# replace the dme var definition so it uses ours
 	build_content.replace("DME_NAME = '" + their_dme[:their_dme.find(".dme")], "DME_NAME = '" + our_dme[:our_dme.find(".dme")])
+    # add russstation folder to dm dependency list (ensures build retries if only our files change)
+    build_content.replace(".depends('code/**')", ".depends('code/**')\n  .depends('russstation/**')")
 	with open(build_path, "w") as build_file:
 		build_file.write(build_content)
 	printv("Replaced build script vars")

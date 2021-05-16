@@ -1,34 +1,27 @@
-/obj/item/areaeditor/blueprints/dwarf
+/obj/item/areaeditor/dwarf
 	name = "embarkment claim"
 	desc = "A land grant from the nobles for claiming Dwarven land."
-	color = "#6f4e37"
+	color = "#aa7c5a"
+	fluffnotice = "For dwarves only. Use to embark further into this strange land. Strike the earth!"
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF // it's like station blueprints, important
 
-/obj/item/areaeditor/blueprints/dwarf/edit_area()
-	var/area/A = get_area(src)
-	if(is_mining_level(A.z)) // dwarfprints only work on lavaland
-		..()
-	else
-		to_chat(usr, "<span class='warning'>You cannot embark this far from the mountainhomes.</span>")
-
-/obj/item/areaeditor/blueprints/dwarf/attack_self(mob/user)
+/obj/item/areaeditor/dwarf/attack_self(mob/user)
+	add_fingerprint(user)
 	// only dwarves can use them
 	if(!is_species(usr, /datum/species/dwarf))
-		to_chat(usr, "You can't seem to make sense of the dwarven property laws.")
-		return
-
-	// don't call ..() as it forcibly inserts station name, which dwarves won't know.
-	add_fingerprint(user)
-	. = "<BODY><HTML><head><title>[src]</title></head> \
-				<h2>[src.name]</h2><hr>"
-	var/area/A = get_area(src)
-	if(!is_mining_level(A.z)) // dwarfprints only work on lavaland
-		. += "<p>This place is too far from the mountainhomes.</p>"
-	else if(A.outdoors)
-		. += "<p>According to the [src.name], you are now in an unclaimed territory.</p>"
-	. += "<p><a href='?src=[REF(src)];create_area=1'>Create or modify an existing area</a></p>"
-	. += "<p>According to \the [src], you are now in <b>\"[html_encode(A.name)]\"</b>.</p>"
-	. += "<p><a href='?src=[REF(src)];edit_area=1'>Change area name</a></p>"
-	var/datum/browser/popup = new(user, "blueprints", "[src]", 700, 500)
-	popup.set_content(.)
-	popup.open()
-	onclose(user, "blueprints")
+		to_chat(usr, "You can't seem to make sense of the dwarven property laws or their handwriting.")
+	else
+		// don't call ..() as it inserts information the dwarves won't know.
+		. = "<BODY><HTML><head><title>[src]</title></head> \
+					<h2>Dwarven Enbarkment Claim</h2><hr> \
+					<small>[fluffnotice]</small><hr>"
+		var/area/A = get_area(src)
+		// dwarfprints only work on lavaland
+		if(!is_mining_level(A.z))
+			. += "<p>According to \the [src.name], this place is too far from the mountainhomes.</p>"
+		else
+			if(A.outdoors)
+				. += "<p>According to \the [src.name], you are now in an unclaimed territory.</p>"
+			else
+				. += "<p>According to \the [src.name], you are now in <b>\"[html_encode(A.name)]\"</b>.</p>"
+			. += "<p><a href='?src=[REF(src)];create_area=1'>Create or modify an existing area</a></p>"

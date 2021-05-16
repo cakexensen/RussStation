@@ -1,5 +1,5 @@
 // how often to check for ghosts
-#define SPOOK_COOLDOWN 600
+#define SPOOK_COOLDOWN 60
 
 /// Spookable: allows a mob to see ghosts, which makes them feel bad
 /datum/component/spookable
