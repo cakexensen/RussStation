@@ -702,3 +702,15 @@
 /datum/map_template/shuttle/snowdin/excavation
 	suffix = "excavation"
 	name = "Snowdin Excavation Elevator"
+
+/datum/map_template/shuttle/mining/echo
+    suffix = "echo"
+    name = "mining shuttle (echo)"
+
+/datum/map_template/shuttle/cargo/echo
+    suffix = "echo"
+    name = "supply shuttle (echo)"
+
+/datum/map_template/shuttle/arrival/Echo
+    suffix = "Echo"
+    name = "arrival shuttle (echo)"
