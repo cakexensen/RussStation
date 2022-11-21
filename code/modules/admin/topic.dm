@@ -1979,3 +1979,38 @@
 				editor.tgui_shared_states["modal"] = json_encode("viewChunk")
 		editor.ui_interact(usr)
 		editor.tgui_shared_states = null
+
+	// honk start - faxes
+	else if(href_list["EvilFax"])
+		if(!check_rights(R_ADMIN))
+			return
+		var/mob/living/carbon/human/H = locate(href_list["EvilFax"])
+		if(!istype(H))
+			to_chat(usr, "<span class='warning'>This can only be used on instances of type /mob/living/carbon/human</span>")
+			return
+		var/etypes = list("Borgification", "Corgification", "Death By Fire", "Total Brain Death", "Cluwne", "Demote", "Demote with Bot", "Revoke Fax Access", "Angry Fax Machine")
+		var/eviltype = input(src.owner, "Which type of evil fax do you wish to send [H]?","Its good to be baaaad...", "") as null|anything in etypes
+		if(!(eviltype in etypes))
+			return
+		var/customname = html_encode(input("Pick a title for the evil fax.", "Fax Title", , owner))
+		if(!customname)
+			customname = "paper"
+		var/obj/item/paper/evilfax/P = new /obj/item/paper/evilfax(null)
+		var/obj/machinery/photocopier/faxmachine/fax = locate(href_list["originfax"])
+
+		P.name = "Central Command - [customname]"
+		P.desc = "<b>You <i>really</i> should've known better.</b>"
+		P.myeffect = eviltype
+		P.mytarget = H
+		if(alert("Do you want the Evil Fax to activate automatically if [H] tries to ignore it?",,"Yes", "No") == "Yes")
+			P.activate_on_timeout = TRUE
+		P.add_stamp(/obj/item/stamp/centcom, rand(-2, 0), rand(-1, 2), "paper_stamp-cent")
+		P.update_icon()
+		P.faxmachineid = REF(fax)
+		P.loc = fax.loc // Do not use fax.receivefax(P) here, as it won't preserve the type. Physically teleporting the fax paper is required.
+		if(istype(H) && H.stat == CONSCIOUS && istype(H.ears, /obj/item/radio/headset))
+			to_chat(H, "<span class='specialnoticebold'>Your headset pings, notifying you that a reply to your fax has arrived.</span>")
+		to_chat(src.owner, "You sent a [eviltype] fax to [H]")
+		log_admin("[key_name(src.owner)] sent [key_name(H)] a [eviltype] fax")
+		message_admins("[key_name_admin(src.owner)] replied to [key_name_admin(H)] with a [eviltype] fax")
+	// honk end
